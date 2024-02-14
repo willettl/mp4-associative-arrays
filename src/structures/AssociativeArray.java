@@ -75,7 +75,7 @@ public class AssociativeArray<K, V> {
    * Set the value associated with key to value. Future calls to
    * get(key) will return value.
    */
-  public void set(K key, V value) {
+  public void set(K key, V value) throws NullKeyException {
     // STUB
   } // set(K,V)
 
@@ -83,15 +83,16 @@ public class AssociativeArray<K, V> {
    * Get the value associated with key.
    *
    * @throws KeyNotFoundException
-   *                              when the key does not appear in the associative
-   *                              array.
+   *                              when the key is null or does not 
+   *                              appear in the associative array.
    */
   public V get(K key) throws KeyNotFoundException {
     return null; // STUB
   } // get(K)
 
   /**
-   * Determine if key appears in the associative array.
+   * Determine if key appears in the associative array. Should
+   * return false for the null key.
    */
   public boolean hasKey(K key) {
     return false; // STUB
