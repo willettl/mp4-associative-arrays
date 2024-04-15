@@ -1,15 +1,18 @@
 package experiments;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 
 import structures.AssociativeArray;
 import structures.KeyNotFoundException;
+import structures.NullKeyException;
 
 /**
  * Experiments with our AssociativeArray class.
  *
- * @author Your Name Here
+ * @author Lucas Willett
  * @author Samuel A. Rebelsky
  */
 public class AssociativeArrayExperiments {
@@ -40,6 +43,7 @@ public class AssociativeArrayExperiments {
    * and values.
    */
   public static void expreimentStringsToStrings(PrintWriter pen) throws Exception {
+
     AssociativeArray<String,String> s2s = 
       new ReportingAssociativeArray<String,String>("s2s", pen);
     s2s.size();
@@ -69,34 +73,49 @@ public class AssociativeArrayExperiments {
       new ReportingAssociativeArray<BigInteger,BigInteger>("b2b", pen);
 
     // Set some values
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 20; i++) {
       b2b.set(BigInteger.valueOf(i), BigInteger.valueOf(i*i));
+      b2b.size();
     } // for
 
     // Then get them
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 20; i++) {
       try { b2b.get(BigInteger.valueOf(i)); } catch (Exception e) { }
     } // for
 
     // Then remove some of them
-    for (int i = 1; i < 11; i += 2) {
+    for (int i = 1; i < 20; i += 2) {
       b2b.remove(BigInteger.valueOf(i));
     } // for
 
     // Then see what happens when we get them
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 20; i++) {
       try { b2b.get(BigInteger.valueOf(i)); } catch (Exception e) { }
     } // for
 
     // Then reset or set some values
-    for (int i = 0; i < 11; i += 3) {
+    for (int i = 0; i < 20; i += 3) {
       b2b.set(BigInteger.valueOf(i), BigInteger.valueOf(i + 10));
     } // for
 
     // Then see what happens when we get them
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 20; i++) {
       try { b2b.get(BigInteger.valueOf(i)); } catch (Exception e) { }
     } // for
+
+    AssociativeArray<BigInteger,BigInteger> testArray = new AssociativeArray<BigInteger, BigInteger>();
+    for (int i = 0; i < 11; i++) {
+        testArray.set(BigInteger.valueOf(i), BigInteger.valueOf(i*i));
+      }    
+    
+      for (int i = 0; i < 11; i++) {
+        testArray.remove(BigInteger.valueOf(i));
+        pen.println(11-i-1);
+        pen.println(testArray.size());
+      }    
+     
+      
+
   } // experimentBigIntToBigInt
 
   // +---------+-----------------------------------------------------
