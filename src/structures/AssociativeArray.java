@@ -77,14 +77,14 @@ public class AssociativeArray<K, V> {
     String str = "{ ";
     if(this.size == 0){
       return "{}";
-    }
+    } //if
     int i = 0;
     do {
       if((this.pairs[i] != null) && (this.pairs[i].key != null)){
         str = str+ this.pairs[i].key + ": " + this.pairs[i].value + ", " ;
-      }
+      } //if
       i++;
-    } while(i < this.capacity);
+    } while(i < this.capacity); //do while
     str = str.substring(0, str.length() -2);
     str = str + " }";
     return str; 
@@ -104,17 +104,17 @@ public class AssociativeArray<K, V> {
       int key_no = find(key);
       this.pairs[key_no].value = value;
       return;
-    } else {
+    } else { //if else
       if(this.isFull()){
         this.expand();
-      }
+      } //if
       for(int i = 0; i < this.capacity; i++){
         if(this.pairs[i] == null){
           this.pairs[i] = new KVPair(key, value);
           this.size++;
           break;
-        }
-      }
+        } //if
+      } //for
     } //else
   } // set(K,V)
 
@@ -142,8 +142,8 @@ public class AssociativeArray<K, V> {
     for(int i = 0; i < this.size; i++){
       if ((this.pairs[i] != null) && (this.pairs[i].key != null) && (this.pairs[i].key.equals(key))){
         return true;
-      }
-    }
+      } //if
+    } //for
     return false;
   } // hasKey(K)
 
@@ -154,8 +154,8 @@ public class AssociativeArray<K, V> {
     for(int i = 0; i < this.capacity; i++){
       if (this.pairs[i] == null){
         return false;
-      }
-    }
+      } //if
+    } //for
     return true;
   } // hasKey(K)
 
@@ -168,7 +168,7 @@ public class AssociativeArray<K, V> {
     int key_no = find(key);
     if(key_no == -1){
       return;
-    }
+    } //if
     this.pairs[key_no].key = null;
     this.pairs[key_no].value = null;
     this.size--;
@@ -205,12 +205,12 @@ public class AssociativeArray<K, V> {
       if ((this.pairs[i] != null) && (this.pairs[i].key != null) && (this.pairs[i].key.equals(key))){
         has_key = 0;
         break;
-      }
+      } //if
       index++;
-    }
+    } //for
     if(has_key == -1){
       return -1;
-    }
+    } //if
     return index;
   } // find(K)
 
